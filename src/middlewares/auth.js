@@ -10,7 +10,7 @@ const userAuth = async (req, res, next) => {
     }
 
     // Validate the token
-    const decodedObj = await jwt.verify(token, "cosmoDIVINE#11$25");
+    const decodedObj = await jwt.verify(token, process.env.JWT_SECRET);
     // Find the user
 
     const { _id } = decodedObj;

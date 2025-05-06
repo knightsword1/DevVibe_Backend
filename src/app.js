@@ -7,6 +7,9 @@ const jwt = require("jsonwebtoken");
 
 const cors = require("cors");
 
+// dotenv
+require("dotenv").config();
+
 app.use(
   cors({
     origin: "http://localhost:5173",
@@ -76,7 +79,7 @@ app.patch("/user/:userId", async (req, res) => {
 connectDB()
   .then(() => {
     console.log("DB connection established ...");
-    app.listen(7777, () =>
+    app.listen(process.env.PORT, () =>
       console.log("Server is successfully listening on port 7777....")
     );
   })
