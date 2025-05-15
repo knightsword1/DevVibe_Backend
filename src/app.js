@@ -7,6 +7,9 @@ const jwt = require("jsonwebtoken");
 
 const cors = require("cors");
 
+const http = require("http");
+const initializeSocket = require("./utils/socket");
+
 // dotenv
 require("dotenv").config();
 
@@ -23,11 +26,16 @@ const authRouter = require("./routes/auth");
 const profileRouter = require("./routes/profile");
 const requestRouter = require("./routes/request");
 const userRouter = require("./routes/user");
+const chatRouter = require("./routes/chat");
 
 app.use("/", authRouter);
 app.use("/", profileRouter);
 app.use("/", requestRouter);
 app.use("/", userRouter);
+app.use("/", chatRouter);
+
+const server = http.createServer(app);
+initializeSocket(server);
 
 //* express.json() reads the json object -> converts it into javascript object -> gives the javascript object back to req.body
 
@@ -79,7 +87,7 @@ app.patch("/user/:userId", async (req, res) => {
 connectDB()
   .then(() => {
     console.log("DB connection established ...");
-    app.listen(process.env.PORT, () =>
+    server.listen(process.env.PORT, () =>
       console.log("Server is successfully listening on port 7777....")
     );
   })
