@@ -21,7 +21,6 @@ const initializeSocket = (server) => {
     // handle events
     socket.on("joinChat", ({ userId, targetUserId }) => {
       const roomId = getSecretRoomId({ userId, targetUserId });
-      console.log("Joining Room :" + roomId);
       socket.join(roomId);
     });
 
@@ -29,7 +28,6 @@ const initializeSocket = (server) => {
       "sendMessage",
       async ({ firstName, lastName, photoUrl, userId, targetUserId, text }) => {
         const roomId = getSecretRoomId({ userId, targetUserId });
-        console.log(firstName + " " + text);
 
         // Check if userId and targetUserId are friends
         const existingFriends = await ConnectionRequest.findOne({
@@ -66,7 +64,7 @@ const initializeSocket = (server) => {
             text,
           });
         } catch (err) {
-          console.log(err);
+          console.error(err);
         }
       }
     );
