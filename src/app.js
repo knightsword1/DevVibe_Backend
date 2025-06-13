@@ -12,6 +12,7 @@ const initializeSocket = require("./utils/socket");
 
 // dotenv
 require("dotenv").config();
+console.log("MONGO_URI:", process.env.MOFNGO_URI);
 
 app.use(
   cors({
@@ -75,7 +76,7 @@ app.patch("/user/:userId", async (req, res) => {
       returnDocument: "before",
       runValidators: true,
     });
-    
+
     res.send("User updated successfully !!");
   } catch (error) {
     res.status(400).send("Update Failed !!" + error.message);
