@@ -12,7 +12,7 @@ const initializeSocket = require("./utils/socket");
 
 // dotenv
 require("dotenv").config();
-console.log("MONGO_URI:", process.env.MOFNGO_URI);
+console.log("DB_CONNECTION_SECRET:", process.env.DB_CONNECTION_SECRET);
 
 app.use(
   cors({
