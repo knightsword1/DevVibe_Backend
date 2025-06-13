@@ -12,8 +12,6 @@ const initializeSocket = require("./utils/socket");
 
 // dotenv
 require("dotenv").config();
-console.log("DB_CONNECTION_SECRET:", process.env.DB_CONNECTION_SECRET);
-
 app.use(
   cors({
     origin: "http://localhost:5173",
